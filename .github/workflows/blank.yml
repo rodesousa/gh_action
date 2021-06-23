@@ -1,0 +1,19 @@
+name: main
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  build-and-publish:
+    runs-on: ubuntu-18.04
+    steps:
+      - id: Docker_meta
+        name: Docker Metadata action
+        uses: docker/metadata-action@v3.3.0
+        with:
+          images: arkhn/river
+          tags: |
+            type=semver,pattern={{version}}
+            type=sha
